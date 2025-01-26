@@ -184,8 +184,80 @@ void ptrfunc() {
 		p2++;
 	} while (*(p1 - 1));
 }
-void uzun()
+void uzun(const char* str1, const char* str2) {
+	const char* longer = strlen(str1) > strlen(str2) ? str1 : str2;
+	printf("%p %s", longer, longer);
+
+}
+int nmsay(const char* str1) {
+	setlocale(LC_ALL, "turkish");
+	int count = 0;
+	char vowel[] = "aeýioöuüAEIÝOÖUÜ";
+	const char* a = str1;
+
+	for (str1;str1 < a + strlen(a);str1++) {
+		for (int i = 0;i < 15;i++)
+		{
+			if (*str1 == vowel[i]) {
+				count++;
+			}
+		}
+	}
+
+	return count;
+}
+
+void addMatrix() {
+	int a[3][3], b[3][3], c[3][3];
+	for (int i = 0;i < 3;i++) {
+		for (int j = 0; j < 3; j++) {
+			printf("a'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			scanf("%d", &a[i][j]);
+			printf("\n");
+			printf("b'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			scanf("%d", &b[i][j]);
+			c[i][j] = a[i][j] + b[i][j];
+		}
+	}
+	for (int i = 0;i < 3;i++) {
+		printf("|");
+		for (int j = 0; j < 3; j++)
+		{
+			printf("%d", c[i][j]);
+			if (j < 2) {
+				printf(", ");
+			}
+		}
+		printf("|\n");
+	}
+}
+void mulMatrix() {
+	int a[3][3], b[3][3], c[3][3];
+	for (int i = 0;i < 3;i++) {
+		for (int j = 0; j < 3; j++) {
+			printf("a'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			scanf("%d", &a[i][j]);
+			printf("\n");
+			printf("b'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			scanf("%d", &b[i][j]);
+			c[i][j] = a[i][j] * b[i][j];
+		}
+	}
+	printf("C matrisi\n");
+	for (int i = 0;i < 3;i++) {
+		printf("|");
+		for (int j = 0; j < 3; j++)
+		{
+			printf("%d", c[i][j]);
+			if (j < 2) {
+				printf(", ");
+			}
+		}
+		printf("|\n");
+	}
+}
 int main() {
+	setlocale(LC_ALL, "turkish");
 	//ornek1();
 	//daire();
 	//condition(8, 5, 7);
@@ -202,8 +274,15 @@ int main() {
 	//transform();
 	//func2();
 	//ptrArith();
-	ptrfunc();
-
+	//ptrfunc();
+	/*const char* mesaj1 = "merhaba herkese";
+	const char* mesaj2 = "merhaba herkese selamlar";
+	uzun(mesaj1, mesaj2);*/
+	/*const char* a = "Rokanonun Dünyasý";
+	printf("Number of vowels in this sentence: %d",nmsay(a));
+	*/
+	//addMatrix();
+	
 	printf("\n");
 	system("pause");
 

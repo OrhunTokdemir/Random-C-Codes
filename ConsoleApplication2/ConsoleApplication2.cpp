@@ -37,7 +37,9 @@ void func4(int* a) {
 int main() {
     setlocale(LC_ALL, "turkish");
     //func();
-
+    char a[] = "asd";
+    printf("%d", (int)strlen(a));
+    printf("\n");
     system("pause");
     return 0;
 }
