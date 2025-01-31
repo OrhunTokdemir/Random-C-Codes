@@ -2,9 +2,11 @@
 #define pi 3.14
 #include<math.h>
 #include <iostream>
+#include <stdio.h>
 #include<stdlib.h>
 #include<locale.h>
 #include<conio.h>
+#include<string.h>
 
 int ornek1()
 {
@@ -255,6 +257,48 @@ void mulMatrix() {
 		}
 		printf("|\n");
 	}
+
+
+}
+void ceaserEncrypt(char* point) {
+	setlocale(LC_ALL, "turkish");
+	char msg0[100];
+	char msg1[100];
+	char* ptrmsg = msg1;
+	printf("Þifrelenecek metni giriniz:");
+	gets_s(msg0, sizeof(msg0));
+	system("cls");
+	int i;
+	for (i = 0;msg0[i]!='\0';i++) {
+		if (msg0[i] != ' ') {
+			msg1[i] = msg0[i] + 5;
+		}
+		else {
+			msg1[i] = ' ';
+		}
+	}
+	msg1[i] = '\0';
+	printf("encryption:%s", msg1);
+	strcpy(point, msg1);
+}
+char a[100];
+char* ptr = a;
+void ceaserDecrypt(char str[]) {//for some reason it doesnt decrpt or maybe encrypt turkish characters properly. I can solve this problem with creating if statements for all of the turkish characters
+	setlocale(LC_ALL, "turkish");
+	char msg0[100];
+	strcpy(msg0, str);
+	int i;
+	for (i = 0;i < strlen(msg0);i++) {
+		if (msg0[i] != ' ') {
+			msg0[i] = msg0[i] - 5;
+		}
+		else {
+			msg0[i] = ' ';
+		}
+	}
+	printf("\nDecryption:%s", msg0);
+	
+
 }
 int main() {
 	setlocale(LC_ALL, "turkish");
@@ -282,7 +326,18 @@ int main() {
 	printf("Number of vowels in this sentence: %d",nmsay(a));
 	*/
 	//addMatrix();
+	//const char* ptr = "hello";
+	//printf("%c", ptr[1]);
+	//char a = 'b';
+	//char b = a + 1;
+	//printf("%c", b);
+	ceaserEncrypt(ptr);
+	ceaserDecrypt(a);
+	  
 	
+	
+	
+
 	printf("\n");
 	system("pause");
 
