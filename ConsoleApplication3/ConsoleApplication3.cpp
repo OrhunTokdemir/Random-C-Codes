@@ -52,5 +52,7 @@ int main() {
     caesarDecrypt(msg, shift);
     printf("Decrypted message: %s\n", msg);
 
+    system("pause");
+
     return 0;
 }

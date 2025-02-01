@@ -269,7 +269,7 @@ void ceaserEncrypt(char* point) {
 	gets_s(msg0, sizeof(msg0));
 	system("cls");
 	int i;
-	for (i = 0;msg0[i]!='\0';i++) {
+	for (i = 0;msg0[i] != '\0';i++) {
 		if (msg0[i] != ' ') {
 			msg1[i] = msg0[i] + 5;
 		}
@@ -297,8 +297,46 @@ void ceaserDecrypt(char str[]) {//for some reason it doesnt decrpt or maybe encr
 		}
 	}
 	printf("\nDecryption:%s", msg0);
-	
 
+
+}
+
+int cordiv[60];
+int cordic[60];
+char vowels[100];
+char consonants[100];
+int lenght;
+
+void ayýr() /* for some reason this code works only on lowercase letters.punctuation marks and turkih characters doesnt register either*/ {
+	setlocale(LC_ALL, "turkish");
+	char sesli[] = "aeýioöuüAEIÝOÖUÜ";
+	char sessiz[] = "bcçdfgðhjklmnprsþtxvyzqBCÇDFGÐHJKLMNPRSÞTXVYZQ.,;:'";
+	char a[100];
+	gets_s(a);
+	lenght = strlen(a);
+	int i = 0, v = 0, c = 0, s = 0;
+	for (i; i < lenght;i++) {
+		for (int j = 0;j < strlen(sesli);j++) {
+			if (a[i] == sesli[j]) {
+				vowels[v] = a[i];
+				cordiv[v] = i;
+				v++;
+				break;
+			}
+			else if(a[i] == sessiz[j] ) {
+				consonants[c] = a[i];
+				cordic[c] = i;
+				c++;
+				break;
+			}
+			else if (a[i] == ' ') {
+				consonants[c] = a[i];
+				cordic[c] = i;
+				c++;
+				break;
+			}
+		}
+	}
 }
 int main() {
 	setlocale(LC_ALL, "turkish");
@@ -331,11 +369,15 @@ int main() {
 	//char a = 'b';
 	//char b = a + 1;
 	//printf("%c", b);
-	ceaserEncrypt(ptr);
-	ceaserDecrypt(a);
-	  
-	
-	
+	//ceaserEncrypt(ptr);
+	//ceaserDecrypt(a);
+	for (int q = 0;q < 60;q++) {
+		cordiv[q] = -1;
+		cordic[q] = -1;
+	}
+
+	ayýr();
+	printf("%s\n%s", consonants, vowels);
 	
 
 	printf("\n");
