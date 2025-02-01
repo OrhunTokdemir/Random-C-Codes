@@ -1,5 +1,6 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
-
+#define PI 3.14
+#include <math.h>
 #include <iostream>
 #include <stdio.h>
 #include<stdlib.h>
@@ -9,7 +10,9 @@
 #include<conio.h>
 #include <clocale>
 #include<string.h>
+#include<string>
 #include <windows.h>
+
 
 int ornek1()
 {
@@ -23,14 +26,14 @@ int ornek1()
 	printf("Merhaba %s, yasiniz: %d", ad, yas);
 	return 0;
 }
-//int daire() {
-//	float r;
-//	printf("yaricap giriniz: ");
-//	scanf("%f", &r);
-//	printf("Cevre = %0.2f \n", 2 * pi * r);
-//	printf("Alan = %0.2f \n", pi * r * r);
-//	return 0;
-//}
+int daire() {
+	float r;
+	printf("yaricap giriniz: ");
+	scanf("%f", &r);
+	printf("Cevre = %0.2f \n", 2 * PI * r);
+	printf("Alan = %0.2f \n", PI * r * r);
+	return 0;
+}
 int condition(int a, int b, int c)
 {
 	int x;
@@ -372,18 +375,17 @@ int main() {
 	//char a = 'b';
 	//char b = a + 1;
 	//printf("%c", b);
-	char a[100];
-	char* ptr = a;
-	ceaserEncrypt(ptr);
-	ceaserDecrypt(a);
+	//char a[100];
+	//char* ptr = a;
+	//ceaserEncrypt(ptr);
+	//ceaserDecrypt(a);
 	//for (int q = 0;q < 60;q++) {
 	//	cordiv[q] = -1;
 	//	cordic[q] = -1;
 	//}
 	//ayır();
 	//printf("%s\n%s", consonants, vowels);
-	// Set the console output code page to UTF-8
-	
-
+	printf("\n");
+	system("pause");
 	return 0;
 }
