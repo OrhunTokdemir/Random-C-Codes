@@ -1,12 +1,15 @@
-#define _CRT_SECURE_NO_WARNINGS
-#define pi 3.14
-#include<math.h>
+ï»¿#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include <stdio.h>
 #include<stdlib.h>
 #include<locale.h>
+#include <locale>
+#include <codecvt>
 #include<conio.h>
+#include <clocale>
 #include<string.h>
+#include <windows.h>
 
 int ornek1()
 {
@@ -20,14 +23,14 @@ int ornek1()
 	printf("Merhaba %s, yasiniz: %d", ad, yas);
 	return 0;
 }
-int daire() {
-	float r;
-	printf("yaricap giriniz: ");
-	scanf("%f", &r);
-	printf("Cevre = %0.2f \n", 2 * pi * r);
-	printf("Alan = %0.2f \n", pi * r * r);
-	return 0;
-}
+//int daire() {
+//	float r;
+//	printf("yaricap giriniz: ");
+//	scanf("%f", &r);
+//	printf("Cevre = %0.2f \n", 2 * pi * r);
+//	printf("Alan = %0.2f \n", pi * r * r);
+//	return 0;
+//}
 int condition(int a, int b, int c)
 {
 	int x;
@@ -163,12 +166,12 @@ int pointer() {
 }
 void func2() {
 	printf("Path :%s \n", getenv("PATH"));
-	printf("«Temp : % s \n", getenv("TEMP"));
-	printf("«OS :%s \n", getenv("OS"));
+	printf("Â«Temp : % s \n", getenv("TEMP"));
+	printf("Â«OS :%s \n", getenv("OS"));
 }
 
 void ptrArith() {
-	char mesaj[100] = "C Ýle programlama Dersine Hoþ geldiniz";
+	char mesaj[100] = "C Ä°le programlama Dersine HoÅŸ geldiniz";
 	char* p = mesaj;
 	int s = 0;
 	while (*p++) s++;
@@ -176,7 +179,7 @@ void ptrArith() {
 
 }
 void ptrfunc() {
-	char mesaj1[100] = "C Ýle programlama Dersine Hoþ geldiniz";
+	char mesaj1[100] = "C Ä°le programlama Dersine HoÅŸ geldiniz";
 	char mesaj2[100];
 	char* p1 = mesaj1;
 	char* p2 = mesaj2;
@@ -194,7 +197,7 @@ void uzun(const char* str1, const char* str2) {
 int nmsay(const char* str1) {
 	setlocale(LC_ALL, "turkish");
 	int count = 0;
-	char vowel[] = "aeýioöuüAEIÝOÖUÜ";
+	char vowel[] = "aeÄ±ioÃ¶uÃ¼AEIÄ°OÃ–UÃœ";
 	const char* a = str1;
 
 	for (str1;str1 < a + strlen(a);str1++) {
@@ -213,10 +216,10 @@ void addMatrix() {
 	int a[3][3], b[3][3], c[3][3];
 	for (int i = 0;i < 3;i++) {
 		for (int j = 0; j < 3; j++) {
-			printf("a'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			printf("a'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
 			scanf("%d", &a[i][j]);
 			printf("\n");
-			printf("b'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			printf("b'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
 			scanf("%d", &b[i][j]);
 			c[i][j] = a[i][j] + b[i][j];
 		}
@@ -237,10 +240,10 @@ void mulMatrix() {
 	int a[3][3], b[3][3], c[3][3];
 	for (int i = 0;i < 3;i++) {
 		for (int j = 0; j < 3; j++) {
-			printf("a'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			printf("a'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
 			scanf("%d", &a[i][j]);
 			printf("\n");
-			printf("b'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
+			printf("b'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
 			scanf("%d", &b[i][j]);
 			c[i][j] = a[i][j] * b[i][j];
 		}
@@ -265,14 +268,15 @@ void ceaserEncrypt(char* point) {
 	char msg0[100];
 	char msg1[100];
 	char* ptrmsg = msg1;
-	printf("Þifrelenecek metni giriniz:");
-	gets_s(msg0, sizeof(msg0));
+	printf("Åžifrelenecek metni giriniz:");
+	gets_s(msg0, sizeof(msg0));//gets_s doesn't register turkish characters properly. the encryption part of the code works properly if it was given an initialized character array.
 	system("cls");
 	int i;
 	for (i = 0;msg0[i] != '\0';i++) {
 		if (msg0[i] != ' ') {
 			msg1[i] = msg0[i] + 5;
 		}
+
 		else {
 			msg1[i] = ' ';
 		}
@@ -281,9 +285,8 @@ void ceaserEncrypt(char* point) {
 	printf("encryption:%s", msg1);
 	strcpy(point, msg1);
 }
-char a[100];
-char* ptr = a;
-void ceaserDecrypt(char str[]) {//for some reason it doesnt decrpt or maybe encrypt turkish characters properly. I can solve this problem with creating if statements for all of the turkish characters
+
+void ceaserDecrypt(char str[]) {
 	setlocale(LC_ALL, "turkish");
 	char msg0[100];
 	strcpy(msg0, str);
@@ -292,6 +295,7 @@ void ceaserDecrypt(char str[]) {//for some reason it doesnt decrpt or maybe encr
 		if (msg0[i] != ' ') {
 			msg0[i] = msg0[i] - 5;
 		}
+
 		else {
 			msg0[i] = ' ';
 		}
@@ -307,10 +311,10 @@ char vowels[100];
 char consonants[100];
 int lenght;
 
-void ayýr() /* for some reason this code works only on lowercase letters.punctuation marks and turkih characters doesnt register either*/ {
+void ayÄ±r() /* for some reason this code works only on lowercase letters.punctuation marks and turkish characters doesnt register either*/ {
 	setlocale(LC_ALL, "turkish");
-	char sesli[] = "aeýioöuüAEIÝOÖUÜ";
-	char sessiz[] = "bcçdfgðhjklmnprsþtxvyzqBCÇDFGÐHJKLMNPRSÞTXVYZQ.,;:'";
+	char sesli[] = "aeÄ±ioÃ¶uÃ¼AEIÄ°OÃ–UÃœ";
+	char sessiz[] = "bcÃ§dfgÄŸhjklmnprsÅŸtxvyzqBCÃ‡DFGÄžHJKLMNPRSÅžTXVYZQ.,;:'";
 	char a[100];
 	gets_s(a);
 	lenght = strlen(a);
@@ -323,7 +327,7 @@ void ayýr() /* for some reason this code works only on lowercase letters.punctua
 				v++;
 				break;
 			}
-			else if(a[i] == sessiz[j] ) {
+			else if (a[i] == sessiz[j]) {
 				consonants[c] = a[i];
 				cordic[c] = i;
 				c++;
@@ -339,7 +343,6 @@ void ayýr() /* for some reason this code works only on lowercase letters.punctua
 	}
 }
 int main() {
-	setlocale(LC_ALL, "turkish");
 	//ornek1();
 	//daire();
 	//condition(8, 5, 7);
@@ -360,7 +363,7 @@ int main() {
 	/*const char* mesaj1 = "merhaba herkese";
 	const char* mesaj2 = "merhaba herkese selamlar";
 	uzun(mesaj1, mesaj2);*/
-	/*const char* a = "Rokanonun Dünyasý";
+	/*const char* a = "Rokanonun DÃ¼nyasÄ±";
 	printf("Number of vowels in this sentence: %d",nmsay(a));
 	*/
 	//addMatrix();
@@ -369,19 +372,18 @@ int main() {
 	//char a = 'b';
 	//char b = a + 1;
 	//printf("%c", b);
-	//ceaserEncrypt(ptr);
-	//ceaserDecrypt(a);
-	for (int q = 0;q < 60;q++) {
-		cordiv[q] = -1;
-		cordic[q] = -1;
-	}
-
-	ayýr();
-	printf("%s\n%s", consonants, vowels);
+	char a[100];
+	char* ptr = a;
+	ceaserEncrypt(ptr);
+	ceaserDecrypt(a);
+	//for (int q = 0;q < 60;q++) {
+	//	cordiv[q] = -1;
+	//	cordic[q] = -1;
+	//}
+	//ayÄ±r();
+	//printf("%s\n%s", consonants, vowels);
+	// Set the console output code page to UTF-8
 	
-
-	printf("\n");
-	system("pause");
 
 	return 0;
 }
