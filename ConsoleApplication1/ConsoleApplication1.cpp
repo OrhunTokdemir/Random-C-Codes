@@ -13,7 +13,6 @@
 #include<string>
 #include <windows.h>
 
-
 int ornek1()
 {
 	printf("Adinizi giriniz:");
@@ -320,7 +319,7 @@ void ayır() /* for some reason this code works only on lowercase letters.punctu
 	char sessiz[] = "bcçdfgğhjklmnprsştxvyzqBCÇDFGĞHJKLMNPRSŞTXVYZQ.,;:'";
 	char a[100];
 	gets_s(a);
-	lenght = strlen(a);
+	lenght = (int)strlen(a);
 	int i = 0, v = 0, c = 0, s = 0;
 	for (i; i < lenght;i++) {
 		for (int j = 0;j < strlen(sesli);j++) {
@@ -345,7 +344,329 @@ void ayır() /* for some reason this code works only on lowercase letters.punctu
 		}
 	}
 }
+int structClass() {
+	struct personel_tip {
+		char isim[16];
+		char soyisim[16];
+		double maas;
+		int baslama_yili;
+		char GSM2[14];
+		char il[20];
+	}*ptrstru, kisi1, kisi2 = { "Hasan Ali","Duru", 12000.0,1985,"532 532 32 32","Van" };
+	kisi1 = kisi2;
+	ptrstru = &kisi2;
+	printf("%d\n%s\n", kisi1.baslama_yili, ptrstru->il);
+	kisi1.baslama_yili = 1234;
+	printf("%d", kisi1.baslama_yili);
+	return 0;
+}
+
+typedef struct KarmasikSayi {
+	int gercel;
+	int sanal;
+}KS;
+
+KS Topla(KS a, KS b) {
+	KS toplam = { a.gercel + b.gercel,a.sanal + b.sanal };
+	return toplam;
+}
+int whats_in_memory() {
+	int a = 5;
+	int b = 6;
+	int* ptra = &a;
+	for (int i = 0;i < 100;i++) {
+		printf("%3d. satır:%d\n", i + 1, *(ptra++));
+	}
+	return 0;
+}
+//code from this line to line 658 is borrowed from my C programming classes notes and are coded by my instructors in Trakya university faculty of engineering
+//int func10() {
+//	setlocale(LC_ALL, "Turkish");
+//	 int x = 10;
+//	printf("Kaca adet :");
+//	scanf("%d", &x);
+//	int A[x]; // x in sabit olması gerektiğinden derlenmedi, olabilir
+//
+//
+//	system("pause");
+//}
+
+
+
+int func9() {
+	setlocale(LC_ALL, "Turkish");
+	int* p, i;
+	//p = (int*)malloc(10 * sizeof(int));  //int p[10]; gibi
+	p = (int*)calloc(10, sizeof(int));
+	for (i = 0; i < 10; ++i) {
+		printf("%lu   %d\n", (unsigned long)p, *p);
+		p++;
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+
+
+int func8() {
+	setlocale(LC_ALL, "Turkish");
+	char* p, i;
+	p = (char*)calloc(10, sizeof(char));
+	for (i = 0; i < 10; ++i) {
+		printf("%lu   %c\n", (unsigned long)p, *p);
+		p++;
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+
+struct yenitip {
+	char ad[21];
+	int dogum_yili;
+	float maas;
+};
+int func7() {
+	setlocale(LC_ALL, "Turkish");
+	struct yenitip* p;
+	int i, n;
+	printf("Kaç adet : ");
+	scanf("%d", &n);
+	p = (yenitip*)calloc(n, sizeof(yenitip));
+	for (i = 0; i < n; ++i) {
+		printf("%lu   %20s    %d   %f\n", (unsigned long)p, p->ad, p->dogum_yili, p->maas);
+		p++;
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+
+struct yenitip1 {
+	char ad[21];
+	int dogum_yili;
+	float maas;
+};
+
+int func6() {
+	setlocale(LC_ALL, "Turkish");
+	struct yenitip1* p;
+	unsigned long int n;
+	printf("Kaç adet : ");
+	scanf("%lu", &n);
+	p = (yenitip1*)calloc(n, sizeof(yenitip1));
+	if (p == NULL) {
+		printf("Yer tahsisatı yapılamadı\n");
+	}
+	else {
+		printf("Yer tahsisatı yapıldı\n");
+	}
+
+	system("pause");
+	return 0;
+}
+
+
+
+int func5() {
+	setlocale(LC_ALL, "Turkish");
+	int* p, * pyedek;
+	int i;
+	unsigned long int n;
+	printf("Kaç adet : ");
+	scanf("%lu", &n);
+	p = (int*)calloc(n, sizeof(int));
+	pyedek = p;
+	if (p == NULL) {
+		printf("Yer tahsisatı yapılamadı\n");
+	}
+	else {
+		printf("Yer tahsisatı yapıldı\n");
+	}
+
+	for (i = 0; i < n; ++i) {
+		p[i] = i;  // A[i]= Ba+i*e
+		//p++;
+	}
+	p = pyedek;
+	for (i = 0; i < n; ++i) {
+		printf("%d\n", p[i]);
+	}
+	printf("Bellek alanı serbest bırakıldı\n");
+	free(p);
+	system("pause");
+	return 0;
+}
+
+
+
+int func4() {
+	setlocale(LC_ALL, "Turkish");
+	int* p, * pyedek;
+	int i;
+	unsigned long int n;
+	printf("Kaç adet : ");
+	scanf("%lu", &n);
+	p = (int*)calloc(n, sizeof(int));
+	pyedek = p;
+	if (p == NULL) {
+		printf("Yer tahsisatı yapılamadı\n");
+	}
+	else {
+		printf("Yer tahsisatı yapıldı\n");
+	}
+
+	for (i = 0; i < n; ++i) {
+		*p = i;  // A[i]= Ba+i*e
+		p++;
+	}
+	p = pyedek;
+	for (i = 0; i < n; ++i) {
+		printf("%d\n", *p);
+		p++;
+	}
+	printf("Bellek alanı serbest bırakıldı\n");
+	p = pyedek;
+	free(p);
+	system("pause");
+	return 0;
+}
+
+
+struct tip {
+	char ad[21];
+	float maas;
+};
+
+int func3() {
+	setlocale(LC_ALL, "Turkish");
+	struct tip* p, * pyedek;
+	int i;
+	unsigned long int n;
+	printf("Kaç adet : ");
+	scanf("%lu", &n);
+	for (i = 0; i < n; ++i) {
+		p = (tip*)calloc(1, sizeof(tip));
+		if (p == NULL) {
+			printf("1 adet yer tahsisatı yapılamadı\n");
+		}
+		else {
+			printf("1 adet yer tahsisatı yapıldı\n");
+		}
+		printf("Ad gir :");
+		scanf("%s", p->ad);
+		printf("Maaş gir :");
+		scanf("%f", &p->maas);
+
+	}
+
+	system("pause");
+	return 0;
+}
+
+struct tip1 {
+	char ad[21];
+	float maas;
+	struct tip1* next;
+};
+
+int func_2() {
+	setlocale(LC_ALL, "turkish");
+	struct tip1* yeni, * ilk = NULL, * son = NULL, * ptr, * gec;
+	int i;
+	unsigned long int n;
+	while (1) {
+		yeni = (tip1*)calloc(1, sizeof(tip1));
+		if (yeni == NULL) {
+			printf("1 adet yer tahsisatı yapılamadı\n");
+		}
+		else {
+			printf("1 adet yer tahsisatı yapıldı\n");
+		}
+		printf("Ad gir :");
+		scanf("%s", yeni->ad);
+		printf("Maaş gir :");
+		scanf("%f", &yeni->maas);
+		if (yeni->maas == 0) {
+			free(yeni);
+			break;
+		}
+		if (ilk == NULL) {
+			ilk = son = yeni;
+		}
+		else {
+			son->next = yeni;
+			son = yeni;
+		}
+
+	}
+	ptr = ilk;
+	while (ptr != NULL) {
+		printf("%p    %20s   %f    %p\n", ptr, ptr->ad, ptr->maas, ptr->next);
+		ptr = ptr->next;
+	}
+
+	ptr = ilk;
+	while (ptr != NULL) {
+		gec = ptr;
+		ptr = ptr->next;
+		printf("%p düğümü serbest bırakıldı\n", gec);
+		free(gec);
+
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+
+int func1(void) {
+	setlocale(LC_ALL, "turkish");
+	int n, m, i, j;
+	int* matris;
+	/* Bellek tahsisi */
+	printf("n x m matrisi için boyutunu giriniz :");
+	int r = scanf("%d %d", &n, &m);
+	matris = (int*)malloc(n * m * sizeof(int));
+	if (matris != NULL) {
+		printf("Bellek tahsisi yapılmıştır.\n\n");
+		/* Bellek alanına 2 boyutlu dizi olarak kullanılacak şekilde
+			işaretçi ile erişip değer ataması*/
+		for (i = 0; i < n; i++) {
+			for (j = 0; j < m; j++) {
+				*(matris + i * m + j) = (i + 1) * (j + 1);
+				// m[i][j] gibi bir kullanım oldu
+			}
+		}
+		/* Ekrana göster */
+		for (i = 0; i < n; i++) {
+			for (j = 0; j < m; j++) {
+				printf("%d  ", *(matris + i * m + j));
+			}
+			printf("\n");
+		}
+		/* Bellek iade etme */
+		system("pause");
+		free(matris);
+		printf("Tahsis edilen belleğin iadesi yapılmıştır.\n\n");
+		system("pause");
+	}
+	else {
+		printf("Bellek tahsisi yapılamadı ..\n");
+		system("pause");
+	}
+	return 0;
+}
+
 int main() {
+	setlocale(LC_ALL, "turkish");
 	//ornek1();
 	//daire();
 	//condition(8, 5, 7);
@@ -385,6 +706,20 @@ int main() {
 	//}
 	//ayır();
 	//printf("%s\n%s", consonants, vowels);
+	//structClass();
+	//KS k1, k2;
+	//k1.gercel = 1; k1.sanal = 2;k2.gercel = 3; k2.sanal = 4;
+	//KS sonuc = Topla(k1, k2);
+	//printf("Sonuc: %d + %di", sonuc.gercel, sonuc.sanal);
+	//func7();
+	//func1();
+	//int *p;
+	//p = (int*)malloc(1 * sizeof(int));
+	//*p = 3;
+	//printf("%d\n", *p);
+	//free(p);
+	//printf("%d", *p);
+
 	printf("\n");
 	system("pause");
 	return 0;

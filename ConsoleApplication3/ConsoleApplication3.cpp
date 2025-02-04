@@ -75,7 +75,7 @@ int main() {
     return 0;
 }
 
-//int main() {
+int main() {
 //    char msg[100];
 //    int shift;
 //
