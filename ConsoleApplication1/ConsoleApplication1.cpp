@@ -1,4 +1,4 @@
-ï»¿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #define PI 3.14
 #include <math.h>
 #include <iostream>
@@ -168,12 +168,12 @@ int pointer() {
 }
 void func2() {
 	printf("Path :%s \n", getenv("PATH"));
-	printf("Â«Temp : % s \n", getenv("TEMP"));
-	printf("Â«OS :%s \n", getenv("OS"));
+	printf("«Temp : % s \n", getenv("TEMP"));
+	printf("«OS :%s \n", getenv("OS"));
 }
 
 void ptrArith() {
-	char mesaj[100] = "C Ä°le programlama Dersine HoÅŸ geldiniz";
+	char mesaj[100] = "C Ýle programlama Dersine Hoþ geldiniz";
 	char* p = mesaj;
 	int s = 0;
 	while (*p++) s++;
@@ -181,7 +181,7 @@ void ptrArith() {
 
 }
 void ptrfunc() {
-	char mesaj1[100] = "C Ä°le programlama Dersine HoÅŸ geldiniz";
+	char mesaj1[100] = "C Ýle programlama Dersine Hoþ geldiniz";
 	char mesaj2[100];
 	char* p1 = mesaj1;
 	char* p2 = mesaj2;
@@ -199,7 +199,7 @@ void uzun(const char* str1, const char* str2) {
 int nmsay(const char* str1) {
 	setlocale(LC_ALL, "turkish");
 	int count = 0;
-	char vowel[] = "aeÄ±ioÃ¶uÃ¼AEIÄ°OÃ–UÃœ";
+	char vowel[] = "aeýioöuüAEIÝOÖUÜ";
 	const char* a = str1;
 
 	for (str1;str1 < a + strlen(a);str1++) {
@@ -218,10 +218,10 @@ void addMatrix() {
 	int a[3][3], b[3][3], c[3][3];
 	for (int i = 0;i < 3;i++) {
 		for (int j = 0; j < 3; j++) {
-			printf("a'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
+			printf("a'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
 			scanf("%d", &a[i][j]);
 			printf("\n");
-			printf("b'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
+			printf("b'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
 			scanf("%d", &b[i][j]);
 			c[i][j] = a[i][j] + b[i][j];
 		}
@@ -242,10 +242,10 @@ void mulMatrix() {
 	int a[3][3], b[3][3], c[3][3];
 	for (int i = 0;i < 3;i++) {
 		for (int j = 0; j < 3; j++) {
-			printf("a'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
+			printf("a'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
 			scanf("%d", &a[i][j]);
 			printf("\n");
-			printf("b'nÄ±n %dx%d inci deÄŸerini giriniz:", i + 1, j + 1);
+			printf("b'nýn %dx%d inci deðerini giriniz:", i + 1, j + 1);
 			scanf("%d", &b[i][j]);
 			c[i][j] = a[i][j] * b[i][j];
 		}
@@ -266,11 +266,12 @@ void mulMatrix() {
 
 }
 void ceaserEncrypt(char* point) {
+	system("chcp 1254 > nul");
 	setlocale(LC_ALL, "turkish");
 	char msg0[100];
 	char msg1[100];
 	char* ptrmsg = msg1;
-	printf("Åžifrelenecek metni giriniz:");
+	printf("Þifrelenecek metni giriniz:");
 	gets_s(msg0, sizeof(msg0));//gets_s doesn't register turkish characters properly. the encryption part of the code works properly if it was given an initialized character array.
 	system("cls");
 	int i;
@@ -287,6 +288,8 @@ void ceaserEncrypt(char* point) {
 	printf("encryption:%s", msg1);
 	strcpy(point, msg1);
 }
+char text[100];
+char* ptrtext = text;
 
 void ceaserDecrypt(char str[]) {
 	setlocale(LC_ALL, "turkish");
@@ -313,10 +316,10 @@ char vowels[100];
 char consonants[100];
 int lenght;
 
-void ayÄ±r() /* for some reason this code works only on lowercase letters.punctuation marks and turkish characters doesnt register either*/ {
+void ayýr() /* for some reason this code works only on lowercase letters.punctuation marks and turkish characters doesnt register either*/ {
 	setlocale(LC_ALL, "turkish");
-	char sesli[] = "aeÄ±ioÃ¶uÃ¼AEIÄ°OÃ–UÃœ";
-	char sessiz[] = "bcÃ§dfgÄŸhjklmnprsÅŸtxvyzqBCÃ‡DFGÄžHJKLMNPRSÅžTXVYZQ.,;:'";
+	char sesli[] = "aeýioöuüAEIÝOÖUÜ";
+	char sessiz[] = "bcçdfgðhjklmnprsþtxvyzqBCÇDFGÐHJKLMNPRSÞTXVYZQ.,;:'";
 	char a[100];
 	gets_s(a);
 	lenght = (int)strlen(a);
@@ -375,7 +378,7 @@ int whats_in_memory() {
 	int b = 6;
 	int* ptra = &a;
 	for (int i = 0;i < 100;i++) {
-		printf("%3d. satÄ±r:%d\n", i + 1, *(ptra++));
+		printf("%3d. satýr:%d\n", i + 1, *(ptra++));
 	}
 	return 0;
 }
@@ -385,7 +388,7 @@ int whats_in_memory() {
 //	 int x = 10;
 //	printf("Kaca adet :");
 //	scanf("%d", &x);
-//	int A[x]; // x in sabit olmasÄ± gerektiÄŸinden derlenmedi, olabilir
+//	int A[x]; // x in sabit olmasý gerektiðinden derlenmedi, olabilir
 //
 //
 //	system("pause");
@@ -434,7 +437,7 @@ int func7() {
 	setlocale(LC_ALL, "Turkish");
 	struct yenitip* p;
 	int i, n;
-	printf("KaÃ§ adet : ");
+	printf("Kaç adet : ");
 	scanf("%d", &n);
 	p = (yenitip*)calloc(n, sizeof(yenitip));
 	for (i = 0; i < n; ++i) {
@@ -458,14 +461,14 @@ int func6() {
 	setlocale(LC_ALL, "Turkish");
 	struct yenitip1* p;
 	unsigned long int n;
-	printf("KaÃ§ adet : ");
+	printf("Kaç adet : ");
 	scanf("%lu", &n);
 	p = (yenitip1*)calloc(n, sizeof(yenitip1));
 	if (p == NULL) {
-		printf("Yer tahsisatÄ± yapÄ±lamadÄ±\n");
+		printf("Yer tahsisatý yapýlamadý\n");
 	}
 	else {
-		printf("Yer tahsisatÄ± yapÄ±ldÄ±\n");
+		printf("Yer tahsisatý yapýldý\n");
 	}
 
 	system("pause");
@@ -479,15 +482,15 @@ int func5() {
 	int* p, * pyedek;
 	int i;
 	unsigned long int n;
-	printf("KaÃ§ adet : ");
+	printf("Kaç adet : ");
 	scanf("%lu", &n);
 	p = (int*)calloc(n, sizeof(int));
 	pyedek = p;
 	if (p == NULL) {
-		printf("Yer tahsisatÄ± yapÄ±lamadÄ±\n");
+		printf("Yer tahsisatý yapýlamadý\n");
 	}
 	else {
-		printf("Yer tahsisatÄ± yapÄ±ldÄ±\n");
+		printf("Yer tahsisatý yapýldý\n");
 	}
 
 	for (i = 0; i < n; ++i) {
@@ -498,7 +501,7 @@ int func5() {
 	for (i = 0; i < n; ++i) {
 		printf("%d\n", p[i]);
 	}
-	printf("Bellek alanÄ± serbest bÄ±rakÄ±ldÄ±\n");
+	printf("Bellek alaný serbest býrakýldý\n");
 	free(p);
 	system("pause");
 	return 0;
@@ -511,15 +514,15 @@ int func4() {
 	int* p, * pyedek;
 	int i;
 	unsigned long int n;
-	printf("KaÃ§ adet : ");
+	printf("Kaç adet : ");
 	scanf("%lu", &n);
 	p = (int*)calloc(n, sizeof(int));
 	pyedek = p;
 	if (p == NULL) {
-		printf("Yer tahsisatÄ± yapÄ±lamadÄ±\n");
+		printf("Yer tahsisatý yapýlamadý\n");
 	}
 	else {
-		printf("Yer tahsisatÄ± yapÄ±ldÄ±\n");
+		printf("Yer tahsisatý yapýldý\n");
 	}
 
 	for (i = 0; i < n; ++i) {
@@ -531,7 +534,7 @@ int func4() {
 		printf("%d\n", *p);
 		p++;
 	}
-	printf("Bellek alanÄ± serbest bÄ±rakÄ±ldÄ±\n");
+	printf("Bellek alaný serbest býrakýldý\n");
 	p = pyedek;
 	free(p);
 	system("pause");
@@ -549,19 +552,19 @@ int func3() {
 	struct tip* p, * pyedek;
 	int i;
 	unsigned long int n;
-	printf("KaÃ§ adet : ");
+	printf("Kaç adet : ");
 	scanf("%lu", &n);
 	for (i = 0; i < n; ++i) {
 		p = (tip*)calloc(1, sizeof(tip));
 		if (p == NULL) {
-			printf("1 adet yer tahsisatÄ± yapÄ±lamadÄ±\n");
+			printf("1 adet yer tahsisatý yapýlamadý\n");
 		}
 		else {
-			printf("1 adet yer tahsisatÄ± yapÄ±ldÄ±\n");
+			printf("1 adet yer tahsisatý yapýldý\n");
 		}
 		printf("Ad gir :");
 		scanf("%s", p->ad);
-		printf("MaaÅŸ gir :");
+		printf("Maaþ gir :");
 		scanf("%f", &p->maas);
 
 	}
@@ -584,14 +587,14 @@ int func_2() {
 	while (1) {
 		yeni = (tip1*)calloc(1, sizeof(tip1));
 		if (yeni == NULL) {
-			printf("1 adet yer tahsisatÄ± yapÄ±lamadÄ±\n");
+			printf("1 adet yer tahsisatý yapýlamadý\n");
 		}
 		else {
-			printf("1 adet yer tahsisatÄ± yapÄ±ldÄ±\n");
+			printf("1 adet yer tahsisatý yapýldý\n");
 		}
 		printf("Ad gir :");
 		scanf("%s", yeni->ad);
-		printf("MaaÅŸ gir :");
+		printf("Maaþ gir :");
 		scanf("%f", &yeni->maas);
 		if (yeni->maas == 0) {
 			free(yeni);
@@ -616,7 +619,7 @@ int func_2() {
 	while (ptr != NULL) {
 		gec = ptr;
 		ptr = ptr->next;
-		printf("%p dÃ¼ÄŸÃ¼mÃ¼ serbest bÄ±rakÄ±ldÄ±\n", gec);
+		printf("%p düðümü serbest býrakýldý\n", gec);
 		free(gec);
 
 	}
@@ -632,20 +635,20 @@ int func1(void) {
 	int n, m, i, j;
 	int* matris;
 	/* Bellek tahsisi */
-	printf("n x m matrisi iÃ§in boyutunu giriniz :");
+	printf("n x m matrisi için boyutunu giriniz :");
 	int r = scanf("%d %d", &n, &m);
 	matris = (int*)malloc(n * m * sizeof(int));
 	if (matris != NULL) {
-		printf("Bellek tahsisi yapÄ±lmÄ±ÅŸtÄ±r.\n\n");
-		/* Bellek alanÄ±na 2 boyutlu dizi olarak kullanÄ±lacak ÅŸekilde
-			iÅŸaretÃ§i ile eriÅŸip deÄŸer atamasÄ±*/
+		printf("Bellek tahsisi yapýlmýþtýr.\n\n");
+		/* Bellek alanýna 2 boyutlu dizi olarak kullanýlacak þekilde
+			iþaretçi ile eriþip deðer atamasý*/
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < m; j++) {
 				*(matris + i * m + j) = (i + 1) * (j + 1);
-				// m[i][j] gibi bir kullanÄ±m oldu
+				// m[i][j] gibi bir kullaným oldu
 			}
 		}
-		/* Ekrana gÃ¶ster */
+		/* Ekrana göster */
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < m; j++) {
 				printf("%d  ", *(matris + i * m + j));
@@ -655,11 +658,11 @@ int func1(void) {
 		/* Bellek iade etme */
 		system("pause");
 		free(matris);
-		printf("Tahsis edilen belleÄŸin iadesi yapÄ±lmÄ±ÅŸtÄ±r.\n\n");
+		printf("Tahsis edilen belleðin iadesi yapýlmýþtýr.\n\n");
 		system("pause");
 	}
 	else {
-		printf("Bellek tahsisi yapÄ±lamadÄ± ..\n");
+		printf("Bellek tahsisi yapýlamadý ..\n");
 		system("pause");
 	}
 	return 0;
@@ -687,7 +690,7 @@ int main() {
 	/*const char* mesaj1 = "merhaba herkese";
 	const char* mesaj2 = "merhaba herkese selamlar";
 	uzun(mesaj1, mesaj2);*/
-	/*const char* a = "Rokanonun DÃ¼nyasÄ±";
+	/*const char* a = "Rokanonun Dünyasý";
 	printf("Number of vowels in this sentence: %d",nmsay(a));
 	*/
 	//addMatrix();
@@ -704,7 +707,7 @@ int main() {
 	//	cordiv[q] = -1;
 	//	cordic[q] = -1;
 	//}
-	//ayÄ±r();
+	//ayýr();
 	//printf("%s\n%s", consonants, vowels);
 	//structClass();
 	//KS k1, k2;
@@ -719,7 +722,8 @@ int main() {
 	//printf("%d\n", *p);
 	//free(p);
 	//printf("%d", *p);
-
+	ceaserEncrypt(ptrtext);
+	ceaserDecrypt(text);
 	printf("\n");
 	system("pause");
 	return 0;
