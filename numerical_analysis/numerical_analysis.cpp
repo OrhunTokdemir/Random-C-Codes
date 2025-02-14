@@ -3,17 +3,21 @@
 #include<locale.h>
 
 #include <math.h>
+#include "numerical_analysis.h"
 //#define E 2.71828f
 
 double func(double x) {
-	return pow(x, 2) - 4 * x - 4;
+	return pow(x, 3) - 4 * x*x - 4;//kök analizi yapýlacak fonksiyon burdan elle deðiþtiriliyor
+	//ilerleyen sürümlerde fonksiyonu string olarak konsoldan alma özelliði eklemeyi planlýyorum.
 }
 
-int main() {
+int BisectionMethod(bool& retFlag)
+{
+	retFlag = true;
 	setlocale(LC_ALL, "turkish");
 	double a, b;
 	double p = 0;
-	double hata=0;
+	double hata = 0;
 	printf("Hata payýný giriniz: ");
 	scanf("%lf", &hata);
 get_cor:
@@ -23,7 +27,7 @@ here:
 	double sign = func(a) * func(b);
 	if (sign < 0) {
 		p = double((a + b) / 2);
-		printf("a=%4lf, f(a)=%4lf | p=%4lf, f(p)=%4lf | b=%4lf, f(b)=%4lf | mutlak hata: %4lf\n", a, func(a), p, func(p), b, func(b),abs(b-a));
+		printf("a=%8lf, f(a)=%8lf | p=%8lf, f(p)=%8lf | b=%8lf, f(b)=%8lf | mutlak hata: %8lf\n", a, func(a), p, func(p), b, func(b), abs(b - a));
 		if ((abs(b - a) < hata)) {
 			printf("\ndenklemin kökü [%0.10lf, %0.10lf] aralýðýndadýr", a, b);
 			printf("\n");
@@ -40,10 +44,20 @@ here:
 		}
 
 	}
-	else if(sign>=0){
+	else if (sign >= 0) {
 		printf("yeniden tanýmlayýn\n");
 		goto get_cor;
 	}
+	retFlag = false;
+	return 0;
+}
+
+
+int main() {
+	setlocale(LC_ALL, "turkish");
+	bool retFlag;
+	int retVal = BisectionMethod(retFlag);
+	if (retFlag) return retVal;
 
 
 	printf("\n");
